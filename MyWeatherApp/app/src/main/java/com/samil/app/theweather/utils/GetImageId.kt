@@ -1,4 +1,16 @@
 package com.samil.app.theweather.utils
 
-object getImageId {
+import com.samil.app.theweather.R
+
+object GetImageId {
+
+    inline fun <reified T : Class<R.drawable>> T.getImageId(resourceName: String): Int {
+        return try {
+            val idField = getDeclaredField(resourceName)
+            idField.getInt(idField)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            -1
+        }
+    }
 }
